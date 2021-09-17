@@ -19,11 +19,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final controller = Controller();
 
-  void _incrementCounter() {
-    setState(() {
-      controller.increment();
-    });
-  }
+  // void _incrementCounter() {
+  //   setState(() {
+  //     controller.increment();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -33,29 +33,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Observer(builder: (_) {
-              return Text(
-                '${controller.counter}',
-                style: Theme.of(context).textTheme.headline4,
-              );
-            })
-          ],
+      body: Padding(
+        padding: EdgeInsets.all(10.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                decoration: InputDecoration(labelText: 'Nome'),
+                onChanged: controller.mudarNome,
+              ),
+              SizedBox(height: 20,),
+              TextField(
+                decoration: InputDecoration(labelText: 'Sobrenome'),
+                  onChanged: controller.mudarSobrenome
+              ),
+              SizedBox(height: 20,),
+              Observer(builder: (_) {
+                return Text('${controller.nomecompleto}');
+              })
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }

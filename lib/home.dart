@@ -19,14 +19,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final controller = Controller();
 
-  // void _incrementCounter() {
-  //   setState(() {
-  //     controller.increment();
-  //   });
-  // }
+  _textField({String? labelText, onChanged, required String? Function() errorText}){
+    return TextField(
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        labelText: labelText,
+        errorText: errorText() == null ? null : errorText(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+
 
     return Scaffold(
       appBar: AppBar(
@@ -39,18 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextField(
-                decoration: InputDecoration(labelText: 'Nome'),
-                onChanged: controller.mudarNome,
-              ),
-              SizedBox(height: 20,),
-              TextField(
-                decoration: InputDecoration(labelText: 'Sobrenome'),
-                  onChanged: controller.mudarSobrenome
-              ),
-              SizedBox(height: 20,),
-              Observer(builder: (_) {
-                return Text('${controller.nomecompleto}');
+              Observer(builder: (_){
+                return _textField(
+                  labelText: "name",
+                  onChanged: controller.client.changeName,
+                  errorText: controller.validateName
+                );
               })
             ],
           ),
@@ -64,3 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+

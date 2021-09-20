@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx_curso/body.dart';
-import 'package:provider/provider.dart';
 
 import 'controller.dart';
 
@@ -21,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<Controller>(context);
+    final controller = GetIt.instance<Controller>();
 
     return Scaffold(
       appBar: AppBar(title: Observer(builder: (_) {

@@ -23,6 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return TextField(
       onChanged: onChanged,
       decoration: InputDecoration(
+        border: OutlineInputBorder(),
         labelText: labelText,
         errorText: errorText() == null ? null : errorText(),
       ),
@@ -46,9 +47,16 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               Observer(builder: (_){
                 return _textField(
-                  labelText: "name",
+                  labelText: "Nome",
                   onChanged: controller.client.changeName,
                   errorText: controller.validateName
+                );
+              }),
+              Observer(builder: (_){
+                return _textField(
+                    labelText: "Email",
+                    onChanged: controller.client.changeEmail,
+                    errorText: controller.validateEmail
                 );
               })
             ],

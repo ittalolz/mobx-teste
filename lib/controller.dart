@@ -18,6 +18,19 @@ abstract class ControllerBase with Store{
     return 'Campo obrigatório';
   }
 
+  String? validateEmail() {
+    if (client.email == null || client.email!.isEmpty){
+      return 'Campo Obrigatório';
+    }
+
+    if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(client.email!)){
+      return 'Email inválido';
+    }
+
+    return null;
+
+  }
+
 }
 
 
